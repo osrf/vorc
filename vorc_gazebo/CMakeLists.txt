@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.0.2)
+project(vorc_gazebo)
+
+# set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+
+# find_package (gazebo REQUIRED)
+
+find_package(catkin REQUIRED COMPONENTS
+  vrx_gazebo
+  wamv_gazebo
+  wave_gazebo
+  xacro
+)
+
+catkin_package(
+  CATKIN_DEPENDS
+    vrx_gazebo
+    wamv_gazebo
+    wave_gazebo
+    xacro
+)
+
+include_directories(
+#  include
+#  ${catkin_INCLUDE_DIRS}
+#  ${GAZEBO_INCLUDE_DIRS}
+)
+
+# Generate world files from xacro and install
+xacro_add_files(
+  worlds/marina.world.xacro
+  INORDER INSTALL DESTINATION worlds
+)
+
+# Install all the world files
+install(DIRECTORY worlds/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds)
+
+# Install all the model files
+install(DIRECTORY models/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/models)
+
+# Install all the launch files
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)

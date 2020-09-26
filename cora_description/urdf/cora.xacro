@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro  name="robot_gazebo">
+    <!-- Include macros for dynamics plugins -->
+    <!--xacro:include filename="$(find cora_description)/urdf/macros.xacro" /-->
+
+    <!-- Defines the base vehicle -->
+    <xacro:include filename="$(find cora_description)/urdf/cora.urdf.xacro" />
+
+    <!-- Attach hydrodynamics plugin -->
+    <xacro:usv_dynamics_gazebo name="cora_dynamics_plugin"/>
+  </xacro:macro>
+
+</robot>
