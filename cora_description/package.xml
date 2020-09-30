@@ -3,7 +3,8 @@
   <name>cora_description</name>
   <version>0.0.0</version>
   <description>
-    URDF model of the robot CoRa, Common Raft, for the Virtual Ocean Robot
+    URDF model of CoRa (Common Raft), a hypothetical surface vehicle designed by
+    Rafi Abdullah with input from Cole Biesemeyer, for the Virtual Ocean Robot
     Challenge (VORC).
   </description>
 

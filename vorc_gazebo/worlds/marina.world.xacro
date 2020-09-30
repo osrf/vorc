@@ -13,7 +13,7 @@
     <xacro:usv_wind_gazebo>
       <wind_objs>
         <wind_obj>
-          <name>cora_wind</name>
+          <name>cora</name>
           <link_name>base_link</link_name>
           <coeff_vector>0.5 0.5 0.33</coeff_vector>
         </wind_obj>

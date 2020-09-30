@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(vorc_gazebo)
 
-# set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-# find_package (gazebo REQUIRED)
-
 find_package(catkin REQUIRED COMPONENTS
   vrx_gazebo
   wamv_gazebo
@@ -21,9 +17,6 @@ catkin_package(
 )
 
 include_directories(
-#  include
-#  ${catkin_INCLUDE_DIRS}
-#  ${GAZEBO_INCLUDE_DIRS}
 )
 
 # Generate world files from xacro and install
