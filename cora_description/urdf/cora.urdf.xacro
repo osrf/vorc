@@ -24,17 +24,17 @@
 
     <collision name="collision">
       <geometry>
-        <box size="12.21 3.58 3.53" />
+        <box size="12.21 3.58 2.84" />
       </geometry>
     </collision>
 
     <!-- Numbers are from MeshLab -->
     <inertial>
-      <origin xyz="0.461760 0 0.262063" rpy="0 0 0" />
-      <mass value="50.964"/>
-      <inertia ixx="71.068199" ixy="0.0" ixz="-25.944702"
-                                iyy="396.183960" iyz="0.0"
-                                                 izz="418.985809"/>
+      <origin xyz="0.458797 0.002028 0.234834" rpy="0 0 0" />
+      <mass value="42.935"/>
+      <inertia ixx="55.373356" ixy="0.245103" ixz="-21.590300"
+                                iyy="341.188965" iyz="0.053122"
+                                                 izz="367.665375"/>
     </inertial>
   </link>
 
