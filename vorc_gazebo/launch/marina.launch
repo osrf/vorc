@@ -14,7 +14,7 @@
   <!-- Do we lock the vessel to the world? -->
   <arg name="robot_locked" default="false" />
   <!-- Start paused? -->
-  <arg name="paused" default="true"/>
+  <arg name="paused" default="false"/>
 
   <!-- Initial USV location and attitude-->
   <arg name="x" default="10" />
