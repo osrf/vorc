@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="cora">
+
+  <!-- Include macros for dynamics plugins -->
+  <xacro:include filename="$(find cora_description)/urdf/macros.xacro" />
+
+  <!-- Attach hydrodynamics plugin -->
+  <xacro:usv_dynamics_gazebo name="cora_dynamics_plugin" />
+
+  <!-- Robot mesh -->
+  <xacro:include filename="$(find cora_description)/urdf/cora_v1.urdf.xacro" />
+
+</robot>

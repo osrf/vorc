@@ -34,7 +34,7 @@
     <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
   </include>
 
-  <arg name="urdf" default="$(find cora_description)/urdf/cora.urdf.xacro"/>
+  <arg name="urdf" default="$(find cora_description)/urdf/cora.xacro"/>
 
   <param name="$(arg namespace)/cora_description"
          command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
