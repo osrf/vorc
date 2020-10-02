@@ -1,8 +1,38 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="cora">
+  <xacro:arg name="locked" default="false" />
+  <xacro:arg name="ground_truth_enabled" default="false" />
+  <xacro:arg name="thruster_namespace" default="thrusters/"/>
+  <xacro:arg name="camera_namespace" default="cameras/"/>
+  <xacro:arg name="sensor_namespace" default="sensors/"/>
+  <xacro:arg name="pinger_namespace" default="pingers/"/>
+  <!-- Note: this is only used for some sensors that do not correctly use the
+  robotNamespace parameter -->
+  <xacro:arg name="namespace" default="cora"/>
+  <xacro:property name="thruster_namespace" value="$(arg thruster_namespace)" scope="global" />
+  <xacro:property name="camera_namespace" value="$(arg camera_namespace)" scope="global" />
+  <xacro:property name="sensor_namespace" value="$(arg sensor_namespace)" scope="global" />
+  <xacro:property name="pinger_namespace" value="$(arg pinger_namespace)" scope="global" />
+  <xacro:property name="namespace" value="$(arg namespace)" scope="global" />
 
   <!-- Include macros for dynamics plugins -->
   <xacro:include filename="$(find cora_description)/urdf/macros.xacro" />
+
+  <!-- Add a stereo camera pair -->
+  <xacro:wamv_camera name="front_left_camera"  y="0.1"  x="3.75" z="1.6" P="${radians(15)}" />
+  <xacro:wamv_camera name="front_right_camera" y="-0.1" x="3.75" z="1.6" P="${radians(15)}" />
+
+  <!-- Add simulated GPS -->
+  <xacro:wamv_gps name="gps" x="-0.4" z="1.4" />
+
+  <!-- Add Simulated IMU -->
+  <xacro:wamv_imu name="imu" y="-0.2" />
+
+  <!-- Add 3D LIDAR -->
+  <xacro:lidar name="front_lidar" type="16_beam" x="3.75" z="1.8" />
+
+  <!-- Add pinger -->
+  <xacro:wamv_pinger name="pinger" position="1.0 0 -1.0" />
 
   <!-- Attach hydrodynamics plugin -->
   <xacro:usv_dynamics_gazebo name="cora_dynamics_plugin" />
