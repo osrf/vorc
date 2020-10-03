@@ -12,13 +12,13 @@
   <link name="dummy_link">
     <visual>
       <geometry>
-        <mesh filename="package://cora_description/models/base/meshes/base.dae"/>
+        <mesh filename="package://cora_description/models/base/meshes/base_v1.dae"/>
       </geometry>
     </visual>
 
     <collision name="collision">
       <geometry>
-        <box size="12.21 3.58 2.84" />
+        <box size="12.21 3.58 3.53" />
       </geometry>
     </collision>
 
@@ -27,8 +27,8 @@
       <origin xyz="0.458797 0.002028 0.234834" rpy="0 0 0" />
       <mass value="42.935"/>
       <inertia ixx="55.373356" ixy="0.245103" ixz="-21.590300"
-                                iyy="341.188965" iyz="0.053122"
-                                                 izz="367.665375"/>
+                               iyy="341.188965" iyz="0.053122"
+                                                izz="367.665375"/>
     </inertial>
   </link>
 
