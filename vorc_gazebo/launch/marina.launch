@@ -15,6 +15,8 @@
   <arg name="robot_locked" default="false" />
   <!-- Start paused? -->
   <arg name="paused" default="false"/>
+  <!-- Joystick control? -->
+  <arg name="joy" default="false"/>
 
   <!-- Initial USV location and attitude-->
   <arg name="x" default="10" />
@@ -33,6 +35,13 @@
     <arg name="gui"          value="$(arg gui)" />
     <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
   </include>
+
+  <!-- Joystick control -->
+  <group if="$(arg joy)">
+    <include file="$(find vrx_gazebo)/launch/usv_joydrive.launch">
+      <arg name="namespace" value="$(arg namespace)"/>
+    </include>
+  </group>
 
   <arg name="urdf" default="$(find cora_description)/urdf/cora.xacro"/>
 
