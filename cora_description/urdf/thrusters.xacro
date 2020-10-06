@@ -5,7 +5,7 @@
   <link name="left_engine_link">
     <inertial>
       <mass value="0.1"/>
-      <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
+      <inertia ixx="0.00889245" ixy="0.0" ixz="0.0" iyy="0.00911125" iyz="0.0" izz="0.00078125"/>
     </inertial>
   </link>
 
@@ -44,7 +44,7 @@
   <link name="right_engine_link">
     <inertial>
       <mass value="0.1"/>
-      <inertia ixx="0.889245" ixy="0.0" ixz="0.0" iyy="0.911125" iyz="0.0" izz="0.078125"/>
+      <inertia ixx="0.00889245" ixy="0.0" ixz="0.0" iyy="0.00911125" iyz="0.0" izz="0.00078125"/>
     </inertial>
   </link>
 
