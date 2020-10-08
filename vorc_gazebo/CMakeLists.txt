@@ -22,6 +22,7 @@ include_directories(
 # Generate world files from xacro and install
 xacro_add_files(
   worlds/marina.world.xacro
+  worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
 
