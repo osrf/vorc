@@ -7,25 +7,25 @@
 
     <!--Waves-->
     <xacro:include filename="$(find wave_gazebo)/world_models/ocean_waves/model.xacro"/>
-    <xacro:ocean_waves scale="3.5"/>
+    <xacro:ocean_waves scale="2.6"/>
 
     <!-- Include all the objects we plan to use for perception.
        Stash them out of the field of view for now -->
     <include>
       <name>red_0</name>
-      <pose>-200 100 1 0 0 0</pose>
+      <pose>400 -600 1 0 0 0</pose>
       <uri>model://surmark950410</uri>
     </include>
 
     <include>
       <name>green_0</name>
-      <pose>-200 102 1 0 0 0</pose>
+      <pose>400 -598 1 0 0 0</pose>
       <uri>model://surmark950400</uri>
     </include>
 
     <include>
       <name>black_0</name>
-      <pose>-200 104 1 0 0 0</pose>
+      <pose>400 -596 1 0 0 0</pose>
       <uri>model://black_totem</uri>
     </include>
 
@@ -42,7 +42,7 @@
       <frame>cora</frame>
       <!-- Pose of each object is expressed relative to the body frame
            of the object named in the frame field - i.e., relative to
-           the wam-v-->
+           the vessel -->
       <object_sequence>
         <object>
           <time>5</time>
