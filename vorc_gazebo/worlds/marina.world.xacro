@@ -6,7 +6,7 @@
 
     <!--Waves-->
     <xacro:include filename="$(find wave_gazebo)/world_models/ocean_waves/model.xacro"/>
-    <xacro:ocean_waves scale="3.5"/>
+    <xacro:ocean_waves scale="2.6"/>
 
     <!--Wind. Note, wind parameters are set in the plugin.-->
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/usv_wind_plugin.xacro"/>
