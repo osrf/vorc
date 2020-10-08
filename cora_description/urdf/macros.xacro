@@ -4,6 +4,6 @@
        name="cora">
 
   <!-- Include dynamics macros -->
-  <xacro:include filename="$(find wamv_gazebo)/urdf/dynamics/wamv_gazebo_dynamics_plugin.xacro" />
+  <xacro:include filename="$(find cora_gazebo)/urdf/cora_gazebo_dynamics_plugin.xacro" />
 
 </robot>
