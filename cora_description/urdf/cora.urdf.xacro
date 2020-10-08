@@ -7,10 +7,13 @@
   <joint name="dummy_joint" type="fixed">
     <parent link="base_link"/>
     <child link="dummy_link"/>
+    <!-- Adjust the visual/collision to match water height -->
+    <origin xyz="0 0 1" rpy="0 0 0"/>
   </joint>
 
   <link name="dummy_link">
     <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://cora_description/models/base/meshes/base.dae"/>
       </geometry>

@@ -16,10 +16,10 @@
 	<mDotQ>0.0</mDotQ>
         <nDotR>0.0</nDotR>
         <!-- Linear and quadratic drag -->
-        <xU>0.0</xU>
-        <xUU>118.0</xUU>
-        <yV>0.0</yV>
-        <yVV>1345</yVV>
+        <xU>120.0</xU>
+        <xUU>240.0</xUU>
+        <yV>240.0</yV>
+        <yVV>2600</yVV>
         <zW>50000.0</zW>
 	<zWW>0.0</zWW>
         <kP>50000.0</kP>
