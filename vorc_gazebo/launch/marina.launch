@@ -43,7 +43,7 @@
 
   <arg name="urdf" default="$(find cora_description)/urdf/cora.xacro"/>
 
-  <param name="$(arg namespace)/cora_description"
+  <param name="$(arg namespace)/robot_description"
          command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
          namespace:=$(arg namespace) "/>
 
@@ -51,5 +51,5 @@
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
         args="-x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg R) -P $(arg P) -Y $(arg Y)
-              -urdf -param $(arg namespace)/cora_description -model cora"/>
+              -urdf -param $(arg namespace)/robot_description -model cora"/>
 </launch>
