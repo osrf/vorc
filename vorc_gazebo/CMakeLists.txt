@@ -43,6 +43,7 @@ target_link_libraries(vorc_perception_scoring_plugin
 xacro_add_files(
   worlds/marina.world.xacro
   worlds/perception_task.world.xacro
+  worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
 
@@ -57,6 +58,13 @@ install(DIRECTORY launch/
 
 install(DIRECTORY config/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
+
+# Install all the executable nodes
+catkin_install_python(
+  PROGRAMS
+    nodes/pinger_visualization.py
+    nodes/set_pinger_position.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 install(TARGETS vorc_scoring_plugin
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
