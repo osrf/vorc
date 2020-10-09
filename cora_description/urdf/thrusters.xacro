@@ -25,7 +25,7 @@
   <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
   <joint name="left_chasis_engine_joint" type="revolute">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="-6.103 0.911 -0.984"/>
+    <origin rpy="0 0 0" xyz="-6.103 0.911 0.016"/>
     <parent link="base_link"/>
     <child link="left_engine_link"/>
     <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
@@ -64,7 +64,7 @@
   <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
   <joint name="right_chasis_engine_joint" type="revolute">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="-6.103 -0.911 -0.984"/>
+    <origin rpy="0 0 0" xyz="-6.103 -0.911 0.016"/>
     <parent link="base_link"/>
     <child link="right_engine_link"/>
     <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
@@ -83,10 +83,10 @@
     <plugin name="cora_gazebo_thrust" filename="libusv_gazebo_thrust_plugin.so">
       <cmdTimeout>1.0</cmdTimeout>
       <robotNamespace>${namespace}</robotNamespace>
-      <xacro:include filename="$(find wamv_gazebo)/urdf/thruster_layouts/wamv_gazebo_thruster_config.xacro" />
+      <xacro:include filename="$(find cora_description)/urdf/cora_thruster_config.xacro" />
       <!-- Angle must be disabled for VORC -->
-      <xacro:wamv_gazebo_thruster_config name="left" enable_angle="false" />
-      <xacro:wamv_gazebo_thruster_config name="right" enable_angle="false" />
+      <xacro:cora_thruster_config name="left" />
+      <xacro:cora_thruster_config name="right" />
     </plugin>
   </gazebo>
 
