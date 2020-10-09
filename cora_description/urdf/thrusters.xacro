@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Dummy link, which usv_gazebo_thrust_plugin looks for -->
+  <link name="left_engine_link">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00889245" ixy="0.0" ixz="0.0" iyy="0.00911125" iyz="0.0" izz="0.00078125"/>
+    </inertial>
+  </link>
+
+  <!-- No additional collision, since propeller is inside robot body -->
+  <link name="left_propeller_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cora_description/models/propeller/meshes/propellerL.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
+    </inertial>
+  </link>
+
+  <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
+  <joint name="left_chasis_engine_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-6.103 0.911 -0.984"/>
+    <parent link="base_link"/>
+    <child link="left_engine_link"/>
+    <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
+  </joint>
+
+  <joint name="left_engine_propeller_joint" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="left_engine_link"/>
+    <child link="left_propeller_link"/>
+    <limit effort="100" velocity="100" />
+    <dynamics friction="0.05" damping="0.05" />
+  </joint>
+
+  <!-- Dummy link, which usv_gazebo_thrust_plugin looks for -->
+  <link name="right_engine_link">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00889245" ixy="0.0" ixz="0.0" iyy="0.00911125" iyz="0.0" izz="0.00078125"/>
+    </inertial>
+  </link>
+
+  <!-- No additional collision, since propeller is inside robot body -->
+  <link name="right_propeller_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://cora_description/models/propeller/meshes/propellerR.dae"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.008545" ixy="0.0" ixz="0.0" iyy="0.008545" iyz="0.0" izz="0.0144"/>
+    </inertial>
+  </link>
+
+  <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
+  <joint name="right_chasis_engine_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-6.103 -0.911 -0.984"/>
+    <parent link="base_link"/>
+    <child link="right_engine_link"/>
+    <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
+  </joint>
+
+  <joint name="right_engine_propeller_joint" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="right_engine_link"/>
+    <child link="right_propeller_link"/>
+    <limit effort="100" velocity="100" />
+    <dynamics friction="0.05" damping="0.05" />
+  </joint>
+
+  <gazebo>
+    <plugin name="cora_gazebo_thrust" filename="libusv_gazebo_thrust_plugin.so">
+      <cmdTimeout>1.0</cmdTimeout>
+      <robotNamespace>${namespace}</robotNamespace>
+      <xacro:include filename="$(find wamv_gazebo)/urdf/thruster_layouts/wamv_gazebo_thruster_config.xacro" />
+      <!-- Angle must be disabled for VORC -->
+      <xacro:wamv_gazebo_thruster_config name="left" enable_angle="false" />
+      <xacro:wamv_gazebo_thruster_config name="right" enable_angle="false" />
+    </plugin>
+  </gazebo>
+
+</robot>
