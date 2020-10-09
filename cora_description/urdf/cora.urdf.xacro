@@ -29,8 +29,7 @@
 a circle segment. The value for the draft is consistent specifications of similar vessels.  Moments of inertia are based on an effective cylindrical model-->
     <inertial>
        <mass value="33000.0"/>
-      <inertia ixx="20700.0" ixy="0.0" ixz="0.0" iyy="420000.0" iyz="0.0" izz="420000.0"/>
-
+       <inertia ixx="20700.0" ixy="0.0" ixz="0.0" iyy="420000.0" iyz="0.0" izz="420000.0"/>
     </inertial>
   </link>
 
