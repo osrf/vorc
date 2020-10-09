@@ -38,6 +38,10 @@ install(DIRECTORY models/
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
+# Install all the config files
+install(DIRECTORY config/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
+
 # Install all the executable nodes
 catkin_install_python(
   PROGRAMS
