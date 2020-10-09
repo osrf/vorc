@@ -37,3 +37,10 @@ install(DIRECTORY models/
 # Install all the launch files
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+
+# Install all the executable nodes
+catkin_install_python(
+  PROGRAMS
+    nodes/pinger_visualization.py
+    nodes/set_pinger_position.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
