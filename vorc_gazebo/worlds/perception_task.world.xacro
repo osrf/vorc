@@ -29,8 +29,8 @@
       <uri>model://black_totem</uri>
     </include>
 
-    <plugin filename="libperception_scoring_plugin.so"
-            name="perception_scoring_plugin">
+    <plugin filename="libvorc_perception_scoring_plugin.so"
+            name="vorc_perception_scoring_plugin">
       <!-- Parameters for ScoringPlugin base class -->
       <vehicle>cora</vehicle>
       <task_name>perception</task_name>
