@@ -22,6 +22,7 @@ include_directories(
 # Generate world files from xacro and install
 xacro_add_files(
   worlds/marina.world.xacro
+  worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
 
@@ -36,3 +37,14 @@ install(DIRECTORY models/
 # Install all the launch files
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+
+# Install all the config files
+install(DIRECTORY config/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
+
+# Install all the executable nodes
+catkin_install_python(
+  PROGRAMS
+    nodes/pinger_visualization.py
+    nodes/set_pinger_position.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

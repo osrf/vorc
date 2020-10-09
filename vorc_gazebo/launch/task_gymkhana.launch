@@ -2,7 +2,7 @@
 <launch>
   <env name="ROSCONSOLE_CONFIG_FILE" value="$(find vrx_gazebo)/config/custom_rosconsole.conf"/>
   <!-- Gazebo world to load -->
-  <arg name="world" default="$(find vorc_gazebo)/worlds/marina.world" />
+  <arg name="world" default="$(find vorc_gazebo)/worlds/gymkhana.world" />
   <!-- If true, run gazebo GUI -->
   <arg name="gui" default="true" />
   <!-- If true, run gazebo in verbose mode -->
@@ -11,6 +11,8 @@
   <arg name="extra_gazebo_args" default=""/>
   <!-- Start in a default namespace -->
   <arg name="namespace" default="cora"/>
+  <!-- Do we lock the vessel to the world? -->
+  <arg name="robot_locked" default="false" />
   <!-- Start paused? -->
   <arg name="paused" default="false"/>
   <!-- Joystick control? -->
@@ -45,6 +47,7 @@
 
   <param name="$(arg namespace)/robot_description"
          command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
+         locked:=$(arg robot_locked)
          namespace:=$(arg namespace) "/>
 
   <!-- Spawn model in Gazebo -->
@@ -52,4 +55,10 @@
         args="-x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg R) -P $(arg P) -Y $(arg Y)
               -urdf -param $(arg namespace)/robot_description -model cora"/>
+
+  <!-- Set the pinger location -->
+  <node name="set_pinger_position" pkg="vorc_gazebo" type="set_pinger_position.py" output="screen">
+    <rosparam command="load" file="$(find vorc_gazebo)/config/pinger.yaml" />
+  </node>
+  <node name="pinger_visualization" pkg="vorc_gazebo" type="pinger_visualization.py" />
 </launch>
