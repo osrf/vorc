@@ -44,7 +44,7 @@
 /// * Running: The task has started. The clockwatch task starts too.
 /// * Finished: The maximum allowed task time has been reached (time out) or
 /// the task has been completed. Other plugins derived from the
-/// VORCScoringPlugin class can call the Finish() method to trigger the
+/// ScoringPlugin class can call the Finish() method to trigger the
 /// completion of the task.
 ///
 /// The plugin also exposes a pair of methods [Set]Score() for setting and
@@ -111,10 +111,10 @@
 ///   </release_joints>
 /// </plugin>
 
-class VORCScoringPlugin : public gazebo::WorldPlugin
+class ScoringPlugin : public gazebo::WorldPlugin
 {
   /// \brief Class constructor.
-  public: VORCScoringPlugin();
+  public: ScoringPlugin();
 
   /// \brief Shutdown Gazebo and ROS.
   public: void Exit();

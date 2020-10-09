@@ -29,11 +29,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(vorc_scoring_plugin src/vorc_scoring_plugin.cc)
+add_library(vorc_scoring_plugin src/scoring_plugin.cc)
 target_link_libraries(vorc_scoring_plugin ${catkin_LIBRARIES})
 
 add_library(vorc_perception_scoring_plugin
-  SHARED src/vorc_perception_scoring_plugin.cc)
+  SHARED src/perception_scoring_plugin.cc)
 target_link_libraries(vorc_perception_scoring_plugin
   ${catkin_LIBRARIES} vorc_scoring_plugin)
 

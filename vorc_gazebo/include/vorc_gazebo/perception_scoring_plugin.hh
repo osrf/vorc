@@ -32,11 +32,11 @@
 #include <gazebo/physics/World.hh>
 #include <gazebo/transport/transport.hh>
 #include <sdf/sdf.hh>
-#include "vorc_gazebo/vorc_scoring_plugin.hh"
+#include "vorc_gazebo/scoring_plugin.hh"
 
 
 /// \brief Class to store information about each object to be populated.
-class VORCPerceptionObject
+class PerceptionObject
 {
   /// \brief Simulation time in which the object should be spawned.
   public: double time;
@@ -44,10 +44,10 @@ class VORCPerceptionObject
   /// \brief amount of time in which the object should be spawned.
   public: double duration;
 
-  /// \brief VORCPerceptionObject type.
+  /// \brief PerceptionObject type.
   public: std::string type;
 
-  /// \brief VORCPerceptionObject type.
+  /// \brief PerceptionObject type.
   public: std::string name;
 
   /// \brief Pose in which the object should be placed in wam-v's frame.
@@ -66,7 +66,7 @@ class VORCPerceptionObject
   public: double error = -1.0;
 
   /// \brief constructor of perception object
-  public: VORCPerceptionObject(const double& _time,
+  public: PerceptionObject(const double& _time,
                  const double& _duration,
                  const std::string& _type,
                  const std::string& _name,
@@ -147,13 +147,13 @@ class VORCPerceptionObject
 ///     </object>
 ///   </object_sequence>
 /// </plugin>
-class VORCPerceptionScoringPlugin : public VORCScoringPlugin
+class PerceptionScoringPlugin : public ScoringPlugin
 {
   /// \brief Constructor.
-  public: VORCPerceptionScoringPlugin();
+  public: PerceptionScoringPlugin();
 
   /// \brief Destructor.
-  public: virtual ~VORCPerceptionScoringPlugin();
+  public: virtual ~PerceptionScoringPlugin();
 
   // Documentation inherited.
   public: virtual void Load(gazebo::physics::WorldPtr _world,
@@ -195,7 +195,7 @@ class VORCPerceptionScoringPlugin : public VORCScoringPlugin
   public: sdf::ElementPtr sdf;
 
   /// \brief Collection of objects to be spawned.
-  public: std::vector<VORCPerceptionObject> objects;
+  public: std::vector<PerceptionObject> objects;
 
   /// \brief Connection event.
   public: gazebo::event::ConnectionPtr connection;

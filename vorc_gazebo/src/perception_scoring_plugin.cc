@@ -29,7 +29,7 @@
 #include <gazebo/physics/Model.hh>
 #include <gazebo/transport/transport.hh>
 #include <sdf/sdf.hh>
-#include "vorc_gazebo/vorc_perception_scoring_plugin.hh"
+#include "vorc_gazebo/perception_scoring_plugin.hh"
 
 /* The version of ignition math in Ubuntu Xenial is 2.2.3 and lacks of
  * some features added after that version in the 2.x series */
@@ -56,7 +56,7 @@
 
 
 /////////////////////////////////////////////////
-VORCPerceptionObject::VORCPerceptionObject(const double& _time,
+PerceptionObject::PerceptionObject(const double& _time,
                const double& _duration,
                const std::string& _type,
                const std::string& _name,
@@ -84,7 +84,7 @@ VORCPerceptionObject::VORCPerceptionObject(const double& _time,
 }
 
 /////////////////////////////////////////////////
-std::string VORCPerceptionObject::Str()
+std::string PerceptionObject::Str()
 {
   std::string rtn = "\nname: ";
   rtn += this->name;
@@ -100,14 +100,14 @@ std::string VORCPerceptionObject::Str()
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionObject::SetError(const double& _error)
+void PerceptionObject::SetError(const double& _error)
 {
   if (this->active)
     this->error = std::min(2.0, std::min(this->error, _error));
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionObject::StartTrial(const gazebo::physics::EntityPtr& _frame)
+void PerceptionObject::StartTrial(const gazebo::physics::EntityPtr& _frame)
 {
   // Set object pose relative to the specified frame (e.g., the wam-v)
   // Pitch and roll are set to zero as a hack to deal with
@@ -130,36 +130,36 @@ void VORCPerceptionObject::StartTrial(const gazebo::physics::EntityPtr& _frame)
   this->modelPtr->SetWorldTwist(ign_math_vector3d_zero,
     ign_math_vector3d_zero);
   this->active = true;
-  gzmsg << "VORCPerceptionScoringPlugin: spawning " << this->name << std::endl;
+  gzmsg << "PerceptionScoringPlugin: spawning " << this->name << std::endl;
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionObject::EndTrial()
+void PerceptionObject::EndTrial()
 {
   this->modelPtr->SetWorldPose(this->origPose);
   this->modelPtr->SetWorldTwist(ign_math_vector3d_zero,
     ign_math_vector3d_zero);
   this->active = false;
-  gzmsg << "VORCPerceptionScoringPlugin: despawning " << this->name << std::endl;
+  gzmsg << "PerceptionScoringPlugin: despawning " << this->name << std::endl;
 }
 
 /////////////////////////////////////////////////
-VORCPerceptionScoringPlugin::VORCPerceptionScoringPlugin()
+PerceptionScoringPlugin::PerceptionScoringPlugin()
 {
-  gzmsg << "VORCPerceptionScoringPlugin loaded" << std::endl;
+  gzmsg << "PerceptionScoringPlugin loaded" << std::endl;
 }
 
 /////////////////////////////////////////////////
-VORCPerceptionScoringPlugin::~VORCPerceptionScoringPlugin()
+PerceptionScoringPlugin::~PerceptionScoringPlugin()
 {
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
+void PerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
   sdf::ElementPtr _sdf)
 {
   // Base class, also binds the update method for the base class
-  VORCScoringPlugin::Load(_world, _sdf);
+  ScoringPlugin::Load(_world, _sdf);
 
   this->world = _world;
   this->sdf = _sdf;
@@ -177,7 +177,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
 
   if (!_sdf->HasElement("object_sequence"))
   {
-    gzerr << "VORCPerceptionScoringPlugin: Unable to find <object_sequence> "
+    gzerr << "PerceptionScoringPlugin: Unable to find <object_sequence> "
       "element\n";
     return;
   }
@@ -195,7 +195,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     // Parse the time.
     if (!objectElem->HasElement("time"))
     {
-      gzerr << "VORCPerceptionScoringPlugin: Unable to find <time> in object\n";
+      gzerr << "PerceptionScoringPlugin: Unable to find <time> in object\n";
       objectElem = objectElem->GetNextElement("object");
       continue;
     }
@@ -212,7 +212,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     // Parse the object type.
     if (!objectElem->HasElement("type"))
     {
-      gzerr << "VORCPerceptionScoringPlugin: Unable to find <type> in object.\n";
+      gzerr << "PerceptionScoringPlugin: Unable to find <type> in object.\n";
       objectElem = objectElem->GetNextElement("object");
       continue;
     }
@@ -222,7 +222,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     // Parse the object name - this is what must be matched id success.
     if (!objectElem->HasElement("name"))
     {
-      gzerr << "VORCPerceptionScoringPlugin: Unable to find <name> in object.\n";
+      gzerr << "PerceptionScoringPlugin: Unable to find <name> in object.\n";
       objectElem = objectElem->GetNextElement("object");
       continue;
     }
@@ -232,7 +232,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     // Parse the object pose
     if (!objectElem->HasElement("pose"))
     {
-      gzerr << "VORCPerceptionScoringPlugin: Unable to find <pose> in object.\n";
+      gzerr << "PerceptionScoringPlugin: Unable to find <pose> in object.\n";
         objectElem = objectElem->GetNextElement("object");
       continue;
     }
@@ -240,7 +240,7 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     ignition::math::Pose3d pose = poseElement->Get<ignition::math::Pose3d>();
 
     // Add the object to the collection.
-    VORCPerceptionObject obj(time, duration, type, name, pose, _world);
+    PerceptionObject obj(time, duration, type, name, pose, _world);
     this->objects.push_back(obj);
 
     objectElem = objectElem->GetNextElement("object");
@@ -266,11 +266,11 @@ void VORCPerceptionScoringPlugin::Load(gazebo::physics::WorldPtr _world,
   this->Restart();
 
   this->connection = gazebo::event::Events::ConnectWorldUpdateEnd(
-      boost::bind(&VORCPerceptionScoringPlugin::OnUpdate, this));
+      boost::bind(&PerceptionScoringPlugin::OnUpdate, this));
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::Restart()
+void PerceptionScoringPlugin::Restart()
 {
   for (auto& obj : this->objects)
   {
@@ -287,7 +287,7 @@ void VORCPerceptionScoringPlugin::Restart()
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::OnUpdate()
+void PerceptionScoringPlugin::OnUpdate()
 {
   // if have not finished the load, skip
   if (!this->frameName.empty())
@@ -375,7 +375,7 @@ void VORCPerceptionScoringPlugin::OnUpdate()
 }
 
 /////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::OnAttempt(
+void PerceptionScoringPlugin::OnAttempt(
   const geographic_msgs::GeoPoseStamped::ConstPtr &_msg)
 {
   // only accept an attempt if there are any in the attempt balance
@@ -425,7 +425,7 @@ void VORCPerceptionScoringPlugin::OnAttempt(
 }
 
 //////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::OnRunning()
+void PerceptionScoringPlugin::OnRunning()
 {
   gzmsg << "OnRunning" << std::endl;
   // Quit if ros plugin was not loaded
@@ -438,14 +438,14 @@ void VORCPerceptionScoringPlugin::OnRunning()
   // Subscribe
   this->nh = ros::NodeHandle(this->ns);
   this->objectSub = this->nh.subscribe(this->objectTopic, 1,
-    &VORCPerceptionScoringPlugin::OnAttempt, this);
+    &PerceptionScoringPlugin::OnAttempt, this);
 }
 
 //////////////////////////////////////////////////
-void VORCPerceptionScoringPlugin::ReleaseVehicle()
+void PerceptionScoringPlugin::ReleaseVehicle()
 {
   // Avoid releasing the vehicle by overriding this function.
   return;
 }
 
-GZ_REGISTER_WORLD_PLUGIN(VORCPerceptionScoringPlugin)
+GZ_REGISTER_WORLD_PLUGIN(PerceptionScoringPlugin)

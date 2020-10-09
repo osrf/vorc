@@ -19,18 +19,18 @@
 #include <gazebo/common/Console.hh>
 #include <gazebo/physics/Joint.hh>
 #include <gazebo/physics/Model.hh>
-#include "vorc_gazebo/vorc_scoring_plugin.hh"
+#include "vorc_gazebo/scoring_plugin.hh"
 
 /////////////////////////////////////////////////
-VORCScoringPlugin::VORCScoringPlugin()
+ScoringPlugin::ScoringPlugin()
     : WorldPlugin(), gzNode(new gazebo::transport::Node()) {
 }
 
-void VORCScoringPlugin::Load(gazebo::physics::WorldPtr _world,
+void ScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     sdf::ElementPtr _sdf)
 {
-  GZ_ASSERT(_world, "VORCScoringPlugin::Load(): NULL world pointer");
-  GZ_ASSERT(_sdf,   "VORCScoringPlugin::Load(): NULL _sdf pointer");
+  GZ_ASSERT(_world, "ScoringPlugin::Load(): NULL world pointer");
+  GZ_ASSERT(_sdf,   "ScoringPlugin::Load(): NULL _sdf pointer");
 
   this->world = _world;
   this->sdf = _sdf;
@@ -60,7 +60,7 @@ void VORCScoringPlugin::Load(gazebo::physics::WorldPtr _world,
     (this->contactDebugTopic, 100);
 
   this->updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    std::bind(&VORCScoringPlugin::Update, this));
+    std::bind(&ScoringPlugin::Update, this));
 
   gzNode->Init();
 #if GAZEBO_MAJOR_VERSION >= 8
@@ -71,7 +71,7 @@ void VORCScoringPlugin::Load(gazebo::physics::WorldPtr _world,
   std::string collisionTopic =
     std::string("/gazebo/") + worldName + std::string("/physics/contacts");
   collisionSub = gzNode->Subscribe(collisionTopic,
-                                          &VORCScoringPlugin::OnCollisionMsg, this);
+                                          &ScoringPlugin::OnCollisionMsg, this);
 
   if (char* env_dbg = std::getenv("VRX_DEBUG"))
   {
@@ -89,44 +89,44 @@ void VORCScoringPlugin::Load(gazebo::physics::WorldPtr _world,
 }
 
 //////////////////////////////////////////////////
-double VORCScoringPlugin::Score() const
+double ScoringPlugin::Score() const
 {
   return this->score;
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::SetScore(double _newScore)
+void ScoringPlugin::SetScore(double _newScore)
 {
   if (this->TaskState() == "running")
     this->score = _newScore;
 }
 
 //////////////////////////////////////////////////
-std::string VORCScoringPlugin::TaskName() const
+std::string ScoringPlugin::TaskName() const
 {
   return this->taskName;
 }
 
 //////////////////////////////////////////////////
-std::string VORCScoringPlugin::TaskState() const
+std::string ScoringPlugin::TaskState() const
 {
   return this->taskState;
 }
 
 //////////////////////////////////////////////////
-gazebo::common::Time VORCScoringPlugin::ElapsedTime() const
+gazebo::common::Time ScoringPlugin::ElapsedTime() const
 {
   return this->elapsedTime;
 }
 
 //////////////////////////////////////////////////
-gazebo::common::Time VORCScoringPlugin::RemainingTime() const
+gazebo::common::Time ScoringPlugin::RemainingTime() const
 {
   return this->remainingTime;
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::Finish()
+void ScoringPlugin::Finish()
 {
   if (this->taskState == "finished")
     return;
@@ -136,7 +136,7 @@ void VORCScoringPlugin::Finish()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::Update()
+void ScoringPlugin::Update()
 {
   // The vehicle might not be ready yet, let's try to get it.
   #if GAZEBO_MAJOR_VERSION >= 8
@@ -153,7 +153,7 @@ void VORCScoringPlugin::Update()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::UpdateTime()
+void ScoringPlugin::UpdateTime()
 {
   #if GAZEBO_MAJOR_VERSION >= 8
     this->currentTime = this->world->SimTime();
@@ -170,7 +170,7 @@ void VORCScoringPlugin::UpdateTime()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::UpdateTaskState()
+void ScoringPlugin::UpdateTaskState()
 {
   if (this->taskState == "initial" &&
       this->currentTime >= this->readyTime)
@@ -198,7 +198,7 @@ void VORCScoringPlugin::UpdateTaskState()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::UpdateTaskMessage()
+void ScoringPlugin::UpdateTaskMessage()
 {
   this->taskMsg.state = this->taskState;
   this->taskMsg.elapsed_time.fromSec(this->elapsedTime.Double());
@@ -208,7 +208,7 @@ void VORCScoringPlugin::UpdateTaskMessage()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::PublishStats()
+void ScoringPlugin::PublishStats()
 {
   this->UpdateTaskMessage();
 
@@ -221,7 +221,7 @@ void VORCScoringPlugin::PublishStats()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::ReleaseVehicle()
+void ScoringPlugin::ReleaseVehicle()
 {
   if (!this->vehicleModel || this->lockJointNames.empty())
     return;
@@ -241,19 +241,19 @@ void VORCScoringPlugin::ReleaseVehicle()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::OnReady()
+void ScoringPlugin::OnReady()
 {
   gzmsg << "OnReady" << std::endl;
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::OnRunning()
+void ScoringPlugin::OnRunning()
 {
   gzmsg << "OnRunning" << std::endl;
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::OnFinished()
+void ScoringPlugin::OnFinished()
 {
   gzmsg << ros::Time::now() << "  OnFinished" << std::endl;
   // If a timeoutScore was specified, use it.
@@ -267,12 +267,12 @@ void VORCScoringPlugin::OnFinished()
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::OnCollision()
+void ScoringPlugin::OnCollision()
 {
 }
 
 //////////////////////////////////////////////////
-void VORCScoringPlugin::OnCollisionMsg(ConstContactsPtr &_contacts) {
+void ScoringPlugin::OnCollisionMsg(ConstContactsPtr &_contacts) {
   // loop though collisions, if any include the wamv, increment collision
   // counter
   for (unsigned int i = 0; i < _contacts->contact_size(); ++i) {
@@ -321,7 +321,7 @@ void VORCScoringPlugin::OnCollisionMsg(ConstContactsPtr &_contacts) {
 }
 
 //////////////////////////////////////////////////
-bool VORCScoringPlugin::ParseSDFParameters()
+bool ScoringPlugin::ParseSDFParameters()
 {
   // This is a required element.
   if (!this->sdf->HasElement("vehicle"))
@@ -398,7 +398,7 @@ bool VORCScoringPlugin::ParseSDFParameters()
 }
 
 //////////////////////////////////////////////////
-bool VORCScoringPlugin::ParseJoints()
+bool ScoringPlugin::ParseJoints()
 {
   // Optional element.
   if (this->sdf->HasElement("release_joints"))
@@ -435,7 +435,7 @@ bool VORCScoringPlugin::ParseJoints()
   return true;
 }
 
-void VORCScoringPlugin::Exit()
+void ScoringPlugin::Exit()
 {
   if (char* env = std::getenv("VRX_EXIT_ON_COMPLETION"))
   {
@@ -453,25 +453,25 @@ void VORCScoringPlugin::Exit()
   else
   {
     gzerr << "VRX_EXIT_ON_COMPLETION not set"
-      << " will not shutdown on VORCScoringPlugin::Exit()"
+      << " will not shutdown on ScoringPlugin::Exit()"
       << std::endl;
     ROS_ERROR_STREAM("VRX_EXIT_ON_COMPLETION not set, will" <<
-              "not shutdown on VORCScoringPlugin::Exit()");
+              "not shutdown on ScoringPlugin::Exit()");
   }
   return;
 }
 
-void VORCScoringPlugin::SetTimeoutScore(double _timeoutScore)
+void ScoringPlugin::SetTimeoutScore(double _timeoutScore)
 {
   this->timeoutScore = _timeoutScore;
 }
 
-double VORCScoringPlugin::GetTimeoutScore()
+double ScoringPlugin::GetTimeoutScore()
 {
   return this->timeoutScore;
 }
 
-double VORCScoringPlugin::GetRunningStateDuration()
+double ScoringPlugin::GetRunningStateDuration()
 {
   return this->runningStateDuration;
 }
