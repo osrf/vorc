@@ -14,6 +14,6 @@
   <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_pinger.xacro" />
 
   <!-- Include dynamics macros -->
-  <xacro:include filename="$(find cora_gazebo)/urdf/cora_gazebo_dynamics_plugin.xacro" />
+  <xacro:include filename="$(find cora_description)/urdf/cora_dynamics_plugin.xacro" />
 
 </robot>

@@ -83,10 +83,10 @@
     <plugin name="cora_gazebo_thrust" filename="libusv_gazebo_thrust_plugin.so">
       <cmdTimeout>1.0</cmdTimeout>
       <robotNamespace>${namespace}</robotNamespace>
-      <xacro:include filename="$(find cora_gazebo)/urdf/cora_gazebo_thruster_config.xacro" />
+      <xacro:include filename="$(find cora_description)/urdf/cora_thruster_config.xacro" />
       <!-- Angle must be disabled for VORC -->
-      <xacro:cora_gazebo_thruster_config name="left" />
-      <xacro:cora_gazebo_thruster_config name="right" />
+      <xacro:cora_thruster_config name="left" />
+      <xacro:cora_thruster_config name="right" />
     </plugin>
   </gazebo>
 

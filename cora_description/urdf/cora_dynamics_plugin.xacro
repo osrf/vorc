@@ -11,9 +11,9 @@
         <!-- Added mass -->
         <xDotU>0</xDotU>
         <yDotV>26000</yDotV>
-	<zDotW>31000</zDotW>
-	<kDotP>0.0</kDotP>
-	<mDotQ>0.0</mDotQ>
+        <zDotW>31000</zDotW>
+        <kDotP>0.0</kDotP>
+        <mDotQ>0.0</mDotQ>
         <nDotR>0.0</nDotR>
         <!-- Linear and quadratic drag -->
         <xU>120.0</xU>
@@ -21,11 +21,11 @@
         <yV>240.0</yV>
         <yVV>2600</yVV>
         <zW>50000.0</zW>
-	<zWW>0.0</zWW>
+        <zWW>0.0</zWW>
         <kP>50000.0</kP>
-	<kPP>5000.0</kPP>
+        <kPP>5000.0</kPP>
         <mQ>500000.0</mQ>
-	<mQQ>5000.0</mQQ>
+        <mQQ>5000.0</mQQ>
         <nR>400000.0</nR>
         <nRR>0.0</nRR>
         <!-- General dimensions -->
