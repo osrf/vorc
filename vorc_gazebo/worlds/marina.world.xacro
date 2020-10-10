@@ -10,7 +10,8 @@
 
     <!--Wind. Note, wind parameters are set in the plugin.-->
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/usv_wind_plugin.xacro"/>
-    <xacro:usv_wind_gazebo>
+    <xacro:usv_wind_gazebo topic_wind_speed="/vorc/debug/wind/speed"
+        topic_wind_direction="/vorc/debug/wind/direction">
       <wind_objs>
         <wind_obj>
           <name>cora</name>
