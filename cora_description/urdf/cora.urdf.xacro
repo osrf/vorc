@@ -7,10 +7,13 @@
   <joint name="dummy_joint" type="fixed">
     <parent link="base_link"/>
     <child link="dummy_link"/>
+    <!-- Adjust the visual/collision to match water height -->
+    <origin xyz="0 0 1" rpy="0 0 0"/>
   </joint>
 
   <link name="dummy_link">
     <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://cora_description/models/base/meshes/base.dae"/>
       </geometry>
@@ -22,13 +25,11 @@
       </geometry>
     </collision>
 
-    <!-- Numbers are from MeshLab -->
+    <!-- Mass is calculated based on an estimate of draft, the effective length and the cross-section of
+a circle segment. The value for the draft is consistent specifications of similar vessels.  Moments of inertia are based on an effective cylindrical model-->
     <inertial>
-      <origin xyz="0.458797 0.002028 0.234834" rpy="0 0 0" />
-      <mass value="42.935"/>
-      <inertia ixx="55.373356" ixy="0.245103" ixz="-21.590300"
-                                iyy="341.188965" iyz="0.053122"
-                                                 izz="367.665375"/>
+       <mass value="33000.0"/>
+       <inertia ixx="20700.0" ixy="0.0" ixz="0.0" iyy="420000.0" iyz="0.0" izz="420000.0"/>
     </inertial>
   </link>
 
