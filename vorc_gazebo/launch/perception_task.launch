@@ -11,6 +11,8 @@
   <arg name="extra_gazebo_args" default=""/>
   <!-- Start in a default namespace -->
   <arg name="namespace" default="cora"/>
+  <!-- Do we lock the vessel to the world? -->
+  <arg name="robot_locked" default="true" />
   <!-- Start paused? -->
   <arg name="paused" default="false"/>
 
@@ -21,9 +23,6 @@
   <arg name="P" default="0" />
   <arg name="R" default="0" />
   <arg name="Y" default="0.3816" />
-
-  <!-- VORC sensors enabled -->
-  <arg name="vorc_sensors_enabled" default="true" />
 
   <!-- Start Gazebo with the world file -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -39,7 +38,7 @@
   <arg name="urdf" default="$(find cora_description)/urdf/cora.xacro"/>
   <param name="$(arg namespace)/robot_description"
          command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
-         vorc_sensors_enabled:=$(arg vorc_sensors_enabled)
+         locked:=$(arg robot_locked)
          namespace:=$(arg namespace) "/>
 
   <!-- Spawn model in Gazebo -->
