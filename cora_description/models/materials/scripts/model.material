@@ -1,32 +1,3 @@
-
-material UrbanTile/Boat_Diffuse
-{
-  technique
-  {
-    pass
-    {
-      texture_unit
-      {
-        texture Boat_Albedo.png
-        }
-      }
-    }
-  }
-
-material UrbanTile/Boat_Diffuse
-{
-  technique
-  {
-    pass
-    {
-      texture_unit
-      {
-        texture Boat_Albedo.png
-        }
-      }
-    }
-  }
-
 material UrbanTile/Boat_Diffuse
 {
   technique
