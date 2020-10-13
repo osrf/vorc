@@ -12,7 +12,7 @@
   <link name="dummy_link">
     <visual>
       <geometry>
-        <mesh filename="package://cora_description/models/base/meshes/base_v1.dae"/>
+        <mesh filename="package://cora_description/models/meshes/base_v1.dae"/>
       </geometry>
     </visual>
 
