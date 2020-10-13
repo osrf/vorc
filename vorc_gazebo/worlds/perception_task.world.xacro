@@ -29,14 +29,16 @@
       <uri>model://black_totem</uri>
     </include>
 
-    <plugin filename="libvorc_perception_scoring_plugin.so"
-            name="vorc_perception_scoring_plugin">
+    <plugin filename="libperception_scoring_plugin.so"
+            name="perception_scoring_plugin">
       <!-- Parameters for ScoringPlugin base class -->
       <vehicle>cora</vehicle>
       <task_name>perception</task_name>
       <initial_state_duration>10.0</initial_state_duration>
       <ready_state_duration>10.0</ready_state_duration>
       <running_state_duration>300</running_state_duration>
+      <task_info_topic>/vorc/task/info</task_info_topic>
+      <contact_debug_topic>/vorc/debug/contact</contact_debug_topic>
       <!-- Parameters for PopulationPlugin -->
       <loop_forever>true</loop_forever>
       <frame>cora</frame>
