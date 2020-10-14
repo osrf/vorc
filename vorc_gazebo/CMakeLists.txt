@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(vorc_gazebo)
 
+# set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+
+#find_package(gazebo REQUIRED)
+
 find_package(catkin REQUIRED COMPONENTS
+  gazebo_dev
   vrx_gazebo
   wamv_gazebo
   wave_gazebo
@@ -9,7 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
+  INCLUDE_DIRS
+    include
   CATKIN_DEPENDS
+    gazebo_dev
     vrx_gazebo
     wamv_gazebo
     wave_gazebo
@@ -17,28 +25,32 @@ catkin_package(
 )
 
 include_directories(
+  include
+  /home/developer/vrx_ws/src/vrx/vrx_gazebo/include
+  ${catkin_INCLUDE_DIRS}
 )
 
-# Generate world files from xacro and install
+add_library(gymkhana_scoring_plugin SHARED src/gymkhana_scoring_plugin.cc)
+target_link_libraries(gymkhana_scoring_plugin ${catkin_LIBRARIES})
+
+## Install ##
+
+# Run xacro to generate world files
 xacro_add_files(
   worlds/marina.world.xacro
   worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
 
-# Install all the world files
 install(DIRECTORY worlds/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds)
 
-# Install all the model files
 install(DIRECTORY models/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/models)
 
-# Install all the launch files
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
-# Install all the config files
 install(DIRECTORY config/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
 
@@ -48,3 +60,9 @@ catkin_install_python(
     nodes/pinger_visualization.py
     nodes/set_pinger_position.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(TARGETS gymkhana_scoring_plugin
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
