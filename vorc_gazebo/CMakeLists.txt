@@ -19,26 +19,25 @@ catkin_package(
 include_directories(
 )
 
-# Generate world files from xacro and install
+## Install ##
+
+# Run xacro to generate world files
 xacro_add_files(
   worlds/marina.world.xacro
+  worlds/perception_task.world.xacro
   worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
 
-# Install all the world files
 install(DIRECTORY worlds/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds)
 
-# Install all the model files
 install(DIRECTORY models/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/models)
 
-# Install all the launch files
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
-# Install all the config files
 install(DIRECTORY config/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
 
