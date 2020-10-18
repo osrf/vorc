@@ -25,6 +25,7 @@ include_directories(
 xacro_add_files(
   worlds/marina.world.xacro
   worlds/perception_task.world.xacro
+  worlds/wayfinding_task.world.xacro
   worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
