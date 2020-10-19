@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!-- World containing sandisland model and some course challenges -->
 <sdf version="1.6" xmlns:xacro="http://ros.org/wiki/xacro">
-  <world name="robotx_stationkeeping">
+  <world name="wayfinding_task_example">
     <xacro:include filename="$(find vorc_gazebo)/worlds/marina.xacro" />
     <xacro:marina />
     <!--Waves-->
@@ -20,18 +20,31 @@
       </wind_objs>
     </xacro:usv_wind_gazebo>
 
-
-  <plugin name="stationkeeping_scoring_plugin"
-          filename="libstationkeeping_scoring_plugin.so">
+    <plugin name="wayfinding_scoring_plugin"
+            filename="libwayfinding_scoring_plugin.so">
       <vehicle>cora</vehicle>
-      <task_name>stationkeeping</task_name>
-      <rms_error_topic>/vorc/station_keeping/rms_error</rms_error_topic>
-      <pose_error_topic>/vorc/station_keeping/pose_error</pose_error_topic>
-      <goal_topic>/vorc/station_keeping/goal</goal_topic>
+      <task_name>wayfinding</task_name>
+      <min_errors_topic>/vorc/wayfinding/min_errors</min_errors_topic>
+      <mean_error_topic>/vorc/wayfinding/mean_error</mean_error_topic>
+      <waypoints_topic>/vorc/wayfinding/waypoints</waypoints_topic>
       <task_info_topic>/vorc/task/info</task_info_topic>
       <contact_debug_topic>/vorc/debug/contact</contact_debug_topic>
+
       <!-- Goal as Latitude, Longitude, Yaw -->
-      <goal_pose>21.30671 -157.88971 0.0 </goal_pose>
+      <waypoints>
+        <!-- Approx. starting point of wamv -->
+        <waypoint>
+          <pose>21.3065958113 -157.890015439 1.21756121843</pose>
+        </waypoint>
+        <!-- A waypoint -->
+        <waypoint>
+          <pose>21.30996 -157.8901 1.0</pose>
+        </waypoint>
+        <!-- Another waypoint -->
+        <waypoint>
+          <pose>21.3101390111 -157.88657555 1.0</pose>
+        </waypoint>
+      </waypoints>
       <initial_state_duration>10</initial_state_duration>
       <ready_state_duration>10</ready_state_duration>
       <running_state_duration>300</running_state_duration>
