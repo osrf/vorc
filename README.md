@@ -16,7 +16,6 @@ teams entering into maritime competitions.
 
 ## Getting Started
 
- * Watch the [Release 1.2 Highlight Video](https://youtu.be/0Q2ehhmSz0Q)
  * The [VORC Wiki](https://github.com/osrf/vorc/wiki) provides documentation and tutorials.
  * The instructions assume a basic familiarity with the ROS environment and Gazebo.  If these tools are new to you, we recommend starting with the excellent [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
  * For technical problems, please us the [project issue tracker](https://github.com/osrf/vrx/issues) to describe your problem or request support.
