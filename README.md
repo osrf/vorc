@@ -19,7 +19,7 @@ teams entering into maritime competitions.
  * The [VORC Wiki](https://github.com/osrf/vorc/wiki) provides documentation
  and tutorials.
  * This project relies on other projects. [Gazebo](http://gazebosim.org/),
- [ROS](www.ros.org) and [VRX](http://github.com/osrf/vrx) are project
+ [ROS](http://ros.org) and [VRX](http://github.com/osrf/vrx) are project
   dependencies.
  * The instructions assume a basic familiarity with the ROS environment and Gazebo.  If these tools are new to you, we recommend starting with the excellent [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
  * For technical problems, please us the [project issue tracker](https://github.com/osrf/vrx/issues) to describe your problem or request support.
