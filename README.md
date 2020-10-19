@@ -51,12 +51,6 @@ aspects, please contribute. You can contact us directly (see below), submit an
 [issue](https://github.com/osrf/vorc/issues) or, better yet, submit a
 [pull request](https://github.com/osrf/vorc/pulls/)!
 
-## Contributors
-
-We continue to receive important improvements from the community.
-We have done our best to document this on our
-[Contributors Wiki](https://github.com/osrf/vorc/wiki/Contributors).
-
 ## Contacts
 
  * Carlos Aguero <caguero@openrobotics.org>
