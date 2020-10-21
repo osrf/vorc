@@ -2,7 +2,7 @@
 
 This repository is the home to the source code and software documentation for
 the Virtual Ocean Robotics Challenge.
-[Challenge documentation](https://github.com/osrf/vorc/wiki/documentation) is
+[Challenge documentation](https://github.com/osrf/vorc/wiki) is
 available on the project wiki, including links to the public website and
 documentation of the tasks and technical specifications.
 
