@@ -11,7 +11,11 @@
 
     <!--Wind. Note, wind parameters are set in the plugin.-->
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/usv_wind_plugin.xacro"/>
-    <xacro:usv_wind_gazebo direction = "270" ros_update_rate="10">
+    <xacro:usv_wind_gazebo
+      direction="270"
+      ros_update_rate="10"
+      topic_wind_speed="/vorc/debug/wind/speed"
+      topic_wind_direction="/vorc/debug/wind/direction">
       <wind_objs>
         <wind_obj>
           <name>cora</name>
@@ -29,10 +33,10 @@
 
     <!-- The obstacle course -->
     <include>
-        <name>buoys</name>
-        <pose>140 -282 0 0 0 3.55</pose>
-        <uri>model://obstacle_course</uri>
-      </include>
+      <name>buoys</name>
+      <pose>140 -282 0 0 0 3.55</pose>
+      <uri>model://obstacle_course</uri>
+    </include>
 
   </world>
 </sdf>
