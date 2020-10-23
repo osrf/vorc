@@ -15,10 +15,12 @@ teams entering into maritime competitions.
 ![VORC](images/cora_front.png)
 
 ## Getting Started
- 
+
  * Watch the [Release 1.0 Highlight Video](https://www.youtube.com/watch?v=j7hQZLJQ8Y4)
  * The [VORC Wiki](https://github.com/osrf/vorc/wiki) provides documentation
  and tutorials.
+ * Use [community.gazebosim.org](https://community.gazebosim.org/c/projects/vorc/9)
+ for general-purpose discussions about VORC.
  * This project relies on other projects. [Gazebo](http://gazebosim.org/),
  [ROS](http://ros.org) and [VRX](http://github.com/osrf/vrx) are project
   dependencies.
