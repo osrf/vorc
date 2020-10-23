@@ -62,6 +62,10 @@ then
   QUICK_TMP=`mktemp -t asdfXXXXXXXXXX`
 else
   CHECK_DIRS=""
+  if [ -z $CHECK_DIRS]; then
+    echo "You did not specify any files to check, so... you pass."
+    exit
+  fi
   if [ $CPPCHECK_LT_157 -eq 1 ]; then
     # cppcheck is older than 1.57, so don't check header files (issue #907)
     CPPCHECK_FILES=`find $CHECK_DIRS -name "*.cc"`
