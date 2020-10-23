@@ -35,6 +35,6 @@ jobs:
         run: |
           cd /tmp/vorc_ws;
           source /opt/ros/melodic/setup.bash;
-          catkin_make -j1;
-          catkin_make run_tests -j1;
+          colcon build;
+          colcon test;
 
