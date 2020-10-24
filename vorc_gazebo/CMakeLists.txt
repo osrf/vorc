@@ -38,7 +38,9 @@ target_link_libraries(gymkhana_scoring_plugin ${catkin_LIBRARIES})
 # Run xacro to generate world files
 xacro_add_files(
   worlds/marina.world.xacro
-  worlds/perception_task.world.xacro
+  worlds/perception.world.xacro
+  worlds/station_keeping.world.xacro
+  worlds/wayfinding.world.xacro
   worlds/gymkhana.world.xacro
   INORDER INSTALL DESTINATION worlds
 )
