@@ -21,8 +21,6 @@
 GymkhanaScoringPlugin::GymkhanaScoringPlugin()
 {
   gzmsg << "GymkhanaScoringPlugin loaded" << std::endl;
-
-  ROS_ERROR("11111111111111111111111111111");
 }
 
 /////////////////////////////////////////////////
