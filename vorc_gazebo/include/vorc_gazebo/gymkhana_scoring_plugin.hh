@@ -18,10 +18,11 @@
 #ifndef VORC_GAZEBO_GYMKHANA_SCORING_PLUGIN_HH_
 #define VORC_GAZEBO_GYMKHANA_SCORING_PLUGIN_HH_
 
-#include <ros/ros.h>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/World.hh>
+#include <ros/ros.h>
 #include <vrx_gazebo/scoring_plugin.hh>
+#include <vrx_gazebo/Task.h>
 
 class GymkhanaScoringPlugin : public ScoringPlugin
 {
@@ -35,8 +36,30 @@ class GymkhanaScoringPlugin : public ScoringPlugin
   public: virtual void Load(gazebo::physics::WorldPtr _world,
                             sdf::ElementPtr _sdf);
 
-  /// \brief Update the plugin.
-  protected: void OnUpdate();
+  /// \brief Callback executed at every world update.
+  private: void Update();
+
+  protected: void ChannelCallback(const vrx_gazebo::Task::ConstPtr& msg);
+
+  protected: void BlackboxCallback(const vrx_gazebo::Task::ConstPtr& msg);
+
+  /// \brief Pointer to the update event connection.
+  private: gazebo::event::ConnectionPtr updateConnection;
+
+  /// \brief ROS node handle.
+  private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+  /// \brief ROS subscriber to channel navigation portion scoring plugin
+  private: ros::Subscriber channelSub;
+
+  /// \brief ROS subscriber to black box acoustic pinger portion scoring plugin
+  private: ros::Subscriber blackboxSub;
+
+  /// \brief Whether buoy channel portion has been completed
+  private: bool channelCrossed = false;
+
+  /// \brief Cumulative error from black box station keeping portion
+  private: double blackboxScore = 0.0;
 };
 
 #endif

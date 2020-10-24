@@ -17,5 +17,79 @@
 
 #include "vorc_gazebo/gymkhana_scoring_plugin.hh"
 
+/////////////////////////////////////////////////
+GymkhanaScoringPlugin::GymkhanaScoringPlugin()
+{
+  gzmsg << "GymkhanaScoringPlugin loaded" << std::endl;
+
+  ROS_ERROR("11111111111111111111111111111");
+}
+
+/////////////////////////////////////////////////
+GymkhanaScoringPlugin::~GymkhanaScoringPlugin()
+{
+}
+
+/////////////////////////////////////////////////
+void GymkhanaScoringPlugin::Load(gazebo::physics::WorldPtr _world,
+  sdf::ElementPtr _sdf)
+{
+  // Base class, also binds the update method for the base class
+  ScoringPlugin::Load(_world, _sdf);
+
+  this->updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(
+    std::bind(&GymkhanaScoringPlugin::Update, this));
+
+  // Setup ROS node and publisher
+  this->rosNode.reset(new ros::NodeHandle());
+
+  this->channelSub = this->rosNode->subscribe(
+    "/vorc/gymkhana_channel/task/info", 5,
+    &GymkhanaScoringPlugin::ChannelCallback, this);
+
+  this->blackboxSub = this->rosNode->subscribe(
+    "/vorc/gymkhana_blackbox/task/info", 5,
+    &GymkhanaScoringPlugin::BlackboxCallback, this);
+}
+
+/////////////////////////////////////////////////
+void GymkhanaScoringPlugin::Update()
+{
+  // Nothing to do if the task is not in "running" state.
+  if (this->ScoringPlugin::TaskState() != "running")
+    return;
+
+  // Check channel navigation is finished
+  // If not, invalidate black box station-keeping score
+  if (this->channelCrossed)
+  {
+    this->ScoringPlugin::SetScore(this->blackboxScore);
+  }
+}
+
+/////////////////////////////////////////////////
+void GymkhanaScoringPlugin::ChannelCallback(const vrx_gazebo::Task::ConstPtr& msg)
+{
+  if (msg)
+  {
+    // Determine whether channel has been crossed before timeout
+    if (!this->channelCrossed)
+    {
+      if (msg->state == "finished" && !msg->timed_out)
+      {
+        this->channelCrossed = true;
+      }
+    }
+  }
+}
+
+/////////////////////////////////////////////////
+void GymkhanaScoringPlugin::BlackboxCallback(const vrx_gazebo::Task::ConstPtr& msg)
+{
+  if (msg)
+  {
+    this->blackboxScore = msg->score;
+  }
+}
 
 GZ_REGISTER_WORLD_PLUGIN(GymkhanaScoringPlugin)

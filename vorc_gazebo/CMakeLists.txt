@@ -26,7 +26,6 @@ catkin_package(
 
 include_directories(
   include
-  /home/developer/vrx_ws/src/vrx/vrx_gazebo/include
   ${catkin_INCLUDE_DIRS}
 )
 
