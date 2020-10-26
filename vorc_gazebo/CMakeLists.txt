@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(vorc_gazebo)
 
-# set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-#find_package(gazebo REQUIRED)
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 find_package(catkin REQUIRED COMPONENTS
   gazebo_dev
@@ -29,7 +27,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(gymkhana_scoring_plugin SHARED src/gymkhana_scoring_plugin.cc)
+add_library(gymkhana_scoring_plugin src/gymkhana_scoring_plugin.cc)
 target_link_libraries(gymkhana_scoring_plugin ${catkin_LIBRARIES})
 
 ## Install ##

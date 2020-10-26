@@ -8,11 +8,11 @@
   <!-- If true, run gazebo in verbose mode -->
   <arg name="verbose" default="false"/>
   <!-- Set various other gazebo arguments-->
-  <arg name="extra_gazebo_args" default=""/>
+  <arg name="extra_gazebo_args" default="--verbose"/>
   <!-- Start in a default namespace -->
   <arg name="namespace" default="cora"/>
   <!-- Do we lock the vessel to the world? -->
-  <arg name="robot_locked" default="false" />
+  <arg name="robot_locked" default="true" />
   <!-- Start paused? -->
   <arg name="paused" default="false"/>
   <!-- Joystick control? -->
