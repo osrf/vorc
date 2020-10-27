@@ -5,7 +5,8 @@
 
   <!-- Include sensor macros -->
   <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_camera.xacro" />
-  <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_gps.xacro" />
+  <!-- Modified for marina world -->
+  <xacro:include filename="$(find cora_description)/urdf/sensors/wamv_gps.xacro" />
   <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_imu.xacro" />
   <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_planar_lidar.xacro" />
   <xacro:include filename="$(find wamv_gazebo)/urdf/sensors/wamv_3d_lidar.xacro" />
