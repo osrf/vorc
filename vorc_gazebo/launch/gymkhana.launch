@@ -8,7 +8,7 @@
   <!-- If true, run gazebo in verbose mode -->
   <arg name="verbose" default="false"/>
   <!-- Set various other gazebo arguments-->
-  <arg name="extra_gazebo_args" default="--verbose"/>
+  <arg name="extra_gazebo_args" default=""/>
   <!-- Start in a default namespace -->
   <arg name="namespace" default="cora"/>
   <!-- Do we lock the vessel to the world? -->

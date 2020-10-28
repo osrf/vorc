@@ -39,8 +39,10 @@ class GymkhanaScoringPlugin : public ScoringPlugin
   /// \brief Callback executed at every world update.
   private: void Update();
 
+  /// \brief Callback for channel navigation portion's scoring plugin
   protected: void ChannelCallback(const vrx_gazebo::Task::ConstPtr& msg);
 
+  /// \brief Callback for black box station-keeping portion's scoring plugin
   protected: void BlackboxCallback(const vrx_gazebo::Task::ConstPtr& msg);
 
   /// \brief Pointer to the update event connection.
