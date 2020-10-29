@@ -20,8 +20,7 @@
       </wind_objs>
     </xacro:usv_wind_gazebo>
 
-
-  <plugin name="stationkeeping_scoring_plugin"
+    <plugin name="stationkeeping_scoring_plugin"
           filename="libstationkeeping_scoring_plugin.so">
       <vehicle>cora</vehicle>
       <task_name>stationkeeping</task_name>
