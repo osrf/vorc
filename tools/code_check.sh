@@ -61,7 +61,9 @@ then
   CPPLINT_FILES="$CHECK_FILES"
   QUICK_TMP=`mktemp -t asdfXXXXXXXXXX`
 else
-  CHECK_DIRS=""
+  CHECK_DIRS=" \
+  vorc_gazebo/include/ vorc_gazebo/src/ \
+  "
   if [ -z $CHECK_DIRS]; then
     echo "You did not specify any files to check, so... you pass."
     exit
