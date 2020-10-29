@@ -18,11 +18,11 @@
 #ifndef VORC_GAZEBO_GYMKHANA_SCORING_PLUGIN_HH_
 #define VORC_GAZEBO_GYMKHANA_SCORING_PLUGIN_HH_
 
+#include <ros/ros.h>
+#include <vrx_gazebo/Task.h>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/World.hh>
-#include <ros/ros.h>
 #include <vrx_gazebo/scoring_plugin.hh>
-#include <vrx_gazebo/Task.h>
 
 class GymkhanaScoringPlugin : public ScoringPlugin
 {
