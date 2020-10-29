@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(vorc_gazebo)
 
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+
 find_package(catkin REQUIRED COMPONENTS
+  gazebo_dev
   vrx_gazebo
   wamv_gazebo
   wave_gazebo
@@ -9,7 +12,10 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
+  INCLUDE_DIRS
+    include
   CATKIN_DEPENDS
+    gazebo_dev
     vrx_gazebo
     wamv_gazebo
     wave_gazebo
@@ -17,7 +23,12 @@ catkin_package(
 )
 
 include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
 )
+
+add_library(gymkhana_scoring_plugin src/gymkhana_scoring_plugin.cc)
+target_link_libraries(gymkhana_scoring_plugin ${catkin_LIBRARIES})
 
 ## Install ##
 
@@ -49,3 +60,9 @@ catkin_install_python(
     nodes/pinger_visualization.py
     nodes/set_pinger_position.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(TARGETS gymkhana_scoring_plugin
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
