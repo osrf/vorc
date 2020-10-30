@@ -66,7 +66,8 @@ void GymkhanaScoringPlugin::Update()
 }
 
 /////////////////////////////////////////////////
-void GymkhanaScoringPlugin::ChannelCallback(const vrx_gazebo::Task::ConstPtr& msg)
+void GymkhanaScoringPlugin::ChannelCallback(
+  const vrx_gazebo::Task::ConstPtr& msg)
 {
   if (msg)
   {
@@ -82,7 +83,8 @@ void GymkhanaScoringPlugin::ChannelCallback(const vrx_gazebo::Task::ConstPtr& ms
 }
 
 /////////////////////////////////////////////////
-void GymkhanaScoringPlugin::BlackboxCallback(const vrx_gazebo::Task::ConstPtr& msg)
+void GymkhanaScoringPlugin::BlackboxCallback(
+  const vrx_gazebo::Task::ConstPtr& msg)
 {
   if (msg)
   {

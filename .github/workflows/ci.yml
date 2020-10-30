@@ -1,0 +1,40 @@
+name: Ubuntu CI
+
+on: [pull_request]
+
+jobs:
+  test-gazebo9-melodic:
+
+    runs-on: ubuntu-18.04
+    container: 
+      image: osrf/vrx:current
+    steps:
+      - run: sudo chown -R `whoami`:`whoami` .
+      - uses: actions/checkout@v2
+      - name: Install base dependencies
+        run: |
+          sudo apt update;
+          sudo apt-get -y install cppcheck protobuf-compiler python3-colcon-common-extensions;
+  
+      - name: Static code checking
+        run: sh tools/code_check.sh
+
+      - name: Checkout vrx 
+        uses: actions/checkout@v2
+        with:
+          repository: osrf/vrx
+          path: vrx 
+
+      - name: Set up workspace
+        run: |
+          mkdir -p /tmp/vorc_ws/src;
+          ln -s `pwd` /tmp/vorc_ws/src;
+
+      - name: Build and run tests
+        shell: bash
+        run: |
+          cd /tmp/vorc_ws;
+          source /opt/ros/melodic/setup.bash;
+          colcon build;
+          colcon test;
+

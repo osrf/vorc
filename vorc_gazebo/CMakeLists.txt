@@ -3,6 +3,12 @@ project(vorc_gazebo)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
+# Set policy for CMake 3.1+, FindBoost.cmake dependency of gazebo uses quoted
+# variables in if()
+if(POLICY CMP0054)
+  cmake_policy(SET CMP0054 OLD)
+endif()
+
 find_package(catkin REQUIRED COMPONENTS
   gazebo_dev
   vrx_gazebo
