@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <model name="buoy01">
+  <model name="buoy_red">
     <static>false</static>
     <link name="base_link">
       <inertial>
@@ -18,15 +18,6 @@
           <izz>63</izz>
         </inertia>
       </inertial>
-      <!--collision name="collision">
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <uri>model://Buoy01/meshes/buoy01.dae</uri>
-            <scale>1.0 1.0 1.0</scale>
-          </mesh>
-        </geometry>
-      </collision-->
       <collision name="collision_inner">
         <pose>0 0 1.225 0 0 0</pose>
         <geometry>
@@ -45,32 +36,28 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name= "Buoy01_visual">
+      <visual name="buoy_red_visual">
         <geometry>
           <mesh>
-            <uri>model://Buoy01/meshes/buoy01.dae</uri>
-            <submesh>
-              <name>Buoy01</name>
-              <center>false</center>
-            </submesh>
+            <uri>model://buoy_red/meshes/Buoy01.dae</uri>
           </mesh>
         </geometry>
         <material>
           <diffuse>1.0 1.0 1.0</diffuse>
           <specular>1.0 1.0 1.0</specular>
-          <!--pbr>
+          <pbr>
             <metal>
-              <albedo_map>model://Buoy01/materials/textures/Buoy01_Albedo.png</albedo_map>
-              <normal_map>model://Buoy01/materials/textures/Buoy01_Normal.png</normal_map>
-              <metalness_map>model://Buoy01/materials/textures/Buoy01_Metalness.png</metalness_map>
-              <roughness_map>model://Buoy01/materials/textures/Buoy01_Roughness.png</roughness_map>
-              <emissive_map>model://Buoy01/materials/textures/Buoy01_Emissive.png</emissive_map>
+              <albedo_map>model://buoy_red/materials/textures/Buoy01_Albedo.png</albedo_map>
+              <normal_map>model://buoy_red/materials/textures/Buoy01_Normal.png</normal_map>
+              <metalness_map>model://buoy_red/materials/textures/Buoy01_Metalness.png</metalness_map>
+              <roughness_map>model://buoy_red/materials/textures/Buoy01_Roughness.png</roughness_map>
+              <emissive_map>model://buoy_red/materials/textures/Buoy01_Emissive.png</emissive_map>
             </metal>
-          </pbr-->
+          </pbr>
           <!-- fallback to script if no PBR support-->
           <script>
-            <uri>model://Buoy01/materials/scripts/</uri>
-            <uri>model://Buoy01/materials/textures/</uri>
+            <uri>model://buoy_red/materials/scripts/</uri>
+            <uri>model://buoy_red/materials/textures/</uri>
             <name>UrbanTile/Buoy01_Diffuse</name>
           </script>
         </material>
@@ -86,9 +73,6 @@
         <link_name>base_link</link_name>
         <pose>0 0 0.2 0 0 0</pose>
         <geometry>
-          <!--sphere>
-            <radius>0.75</radius>
-          </sphere-->
           <cylinder>
             <radius>0.75</radius>
             <length>0.9</length>
