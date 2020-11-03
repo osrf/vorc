@@ -60,8 +60,8 @@
   <xacro:wamv_camera name="front_left_camera"  x="-0.61" y="0.2"  z="4.7" post_z_from="4.6" P="${radians(15)}" />
   <xacro:wamv_camera name="front_right_camera" x="-0.61" y="-0.2" z="4.7" post_z_from="4.6" P="${radians(15)}" />
   <xacro:lidar name="front_lidar" type="16_beam" x="-0.595" z="5" P="${radians(8)}" post_z_from="4.6"/>
-  <xacro:wamv_gps name="gps" x="-1.0" z="4.6" lat="44.091722" lon="9.823564"/>
-  <xacro:wamv_imu name="imu" y="-0.2" z="1.0" />
+  <xacro:wamv_gps name="gps" x="-1.0" z="4.6" lat="44.091722" lon="9.823564" update_rate="20" />
+  <xacro:wamv_imu name="imu" y="-0.2" z="1.0" update_rate="100" />
   <xacro:wamv_pinger name="pinger" frameId="cora/pinger" />
 
 </robot>
