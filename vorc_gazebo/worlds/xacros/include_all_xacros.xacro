@@ -14,8 +14,7 @@
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/insert_model.xacro" />
 
     <!-- Competition Tasks -->
-    <!-- TODO(mabelzhang) write this one -->
-    <!--xacro:include filename="$(find vorc_gazebo)/worlds/xacros/gymkhana.xacro" /-->
+    <xacro:include filename="$(find vorc_gazebo)/worlds/xacros/gymkhana.xacro" />
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/perception.xacro" />
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/stationkeeping.xacro" />
     <xacro:include filename="$(find vrx_gazebo)/worlds/xacros/wayfinding.xacro" />
