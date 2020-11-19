@@ -7,7 +7,8 @@
     obs_name='gymkhana_obs' obs_uri:=obstacle_course
     obs_x:=140 obs_y:=-282 obs_z:=0 obs_R:=0 obs_P:=0 obs_Y:=3.55
     pinger_x:=116 pinger_y:=-278 pinger_z:=-5
-    running_duration:=300 **gates **wp_markers">
+    running_duration:=300
+    **wp_markers **gates">
 
     <!-- The navigation course -->
     <include>
