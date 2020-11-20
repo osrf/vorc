@@ -34,8 +34,8 @@
     <!-- The obstacle course -->
     <include>
       <name>buoys</name>
-      <pose>140 -282 0 0 0 3.55</pose>
       <uri>model://obstacle_course</uri>
+      <pose>140 -282 0 0 0 3.55</pose>
     </include>
 
     <!-- Top-level scoring plugin -->

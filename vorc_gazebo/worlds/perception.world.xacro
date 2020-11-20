@@ -29,12 +29,6 @@
       <uri>model://black_totem</uri>
     </include>
 
-    <include>
-      <name>buoy_red</name>
-      <pose>400 -550 1 0 0 0</pose>
-      <uri>model://buoy_red</uri>
-    </include>
-
     <plugin filename="libperception_scoring_plugin.so"
             name="perception_scoring_plugin">
       <!-- Parameters for ScoringPlugin base class -->

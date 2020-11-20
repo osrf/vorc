@@ -11,6 +11,8 @@
   <arg name="extra_gazebo_args" default=""/>
   <!-- Start in a default namespace -->
   <arg name="namespace" default="cora"/>
+  <!-- Do we lock the vessel to the world? -->
+  <arg name="robot_locked" default="false" />
   <!-- Start paused? -->
   <arg name="paused" default="false"/>
   <!-- Joystick control? -->
@@ -41,10 +43,12 @@
     </include>
   </group>
 
+  <!-- Load robot model -->
   <arg name="urdf" default="$(find cora_description)/urdf/cora.xacro"/>
 
   <param name="$(arg namespace)/robot_description"
          command="$(find xacro)/xacro &#x002D;&#x002D;inorder '$(arg urdf)'
+         locked:=$(arg robot_locked)
          namespace:=$(arg namespace) "/>
 
   <!-- Spawn model in Gazebo -->
