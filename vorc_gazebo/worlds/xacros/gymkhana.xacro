@@ -2,7 +2,7 @@
 <world xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="gymkhana" params="
     namespace:=cora competition:=vorc
-    nav_name='gymkhana_nav' nav_uri:=short_navigation_course0
+    nav_name='short_navigation_course_0' nav_uri:=short_navigation_course0
     nav_x:=60 nav_y:=-362 nav_z:=0 nav_R:=0 nav_P:=0 nav_Y:=3.55
     obs_name='gymkhana_obs' obs_uri:=obstacle_course
     obs_x:=140 obs_y:=-282 obs_z:=0 obs_R:=0 obs_P:=0 obs_Y:=3.55
