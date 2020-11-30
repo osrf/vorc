@@ -34,15 +34,15 @@
       <waypoints>
         <!-- Approx. starting point of wamv -->
         <waypoint>
-          <pose>44.0883705386 9.82367673319 1.21756121843</pose>
+          <pose>44.09190002 9.82354846 1.21756121843</pose>
         </waypoint>
         <!-- A waypoint -->
         <waypoint>
-          <pose>44.0916341743 9.82668230867 1.0</pose>
+          <pose>44.09516366 9.826554036 1.0</pose>
         </waypoint>
         <!-- Another waypoint -->
         <waypoint>
-          <pose>44.0913208285 9.82350874434 1.0</pose>
+          <pose>44.09485031 9.823380472 1.0</pose>
         </waypoint>
       </waypoints>
       <initial_state_duration>10</initial_state_duration>
