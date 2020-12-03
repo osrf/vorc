@@ -48,6 +48,9 @@
       <initial_state_duration>10</initial_state_duration>
       <ready_state_duration>10</ready_state_duration>
       <running_state_duration>300</running_state_duration>
+      <!-- Per-plugin flag, different from env var VRX_EXIT_ON_COMPLETION.
+           Respect top-level plugin finished status. -->
+      <per_plugin_exit_on_completion>true</per_plugin_exit_on_completion>
     </plugin>
 
     <!-- Scoring plugin for buoy channel portion -->
@@ -57,6 +60,8 @@
       <task_name>gymkhana_channel</task_name>
       <task_info_topic>/vorc/gymkhana_channel/task/info</task_info_topic>
       <contact_debug_topic>/vorc/gymkhana_channel/debug/contact</contact_debug_topic>
+      <!-- Keep Gazebo running after this sub-task is completed -->
+      <per_plugin_exit_on_completion>false</per_plugin_exit_on_completion>
       <initial_state_duration>10</initial_state_duration>
       <ready_state_duration>10</ready_state_duration>
       <running_state_duration>300</running_state_duration>
@@ -97,6 +102,8 @@
       <goal_topic>/vorc/gymkhana_blackbox/goal</goal_topic>
       <task_info_topic>/vorc/gymkhana_blackbox/task/info</task_info_topic>
       <contact_debug_topic>/vorc/gymkhana_blackbox/debug/contact</contact_debug_topic>
+      <!-- Keep Gazebo running after this sub-task is completed -->
+      <per_plugin_exit_on_completion>false</per_plugin_exit_on_completion>
       <!-- Goal as Cartesian coordinates -->
       <goal_pose_cart>116 -278 -5</goal_pose_cart>
       <initial_state_duration>10</initial_state_duration>
