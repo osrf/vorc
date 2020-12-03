@@ -46,7 +46,7 @@
       <task_name>gymkhana_channel</task_name>
       <task_info_topic>/${competition}/gymkhana_channel/task/info</task_info_topic>
       <contact_debug_topic>/${competition}/gymkhana_channel/debug/contact</contact_debug_topic>
-      <!-- Keep Gazebo running after channel portion is completed -->
+      <!-- Keep Gazebo running after this sub-task is completed -->
       <per_plugin_exit_on_completion>false</per_plugin_exit_on_completion>
       <initial_state_duration>10</initial_state_duration>
       <ready_state_duration>10</ready_state_duration>
@@ -77,7 +77,7 @@
       <goal_topic>/${competition}/gymkhana_blackbox/goal</goal_topic>
       <task_info_topic>/${competition}/gymkhana_blackbox/task/info</task_info_topic>
       <contact_debug_topic>/${competition}/gymkhana_blackbox/debug/contact</contact_debug_topic>
-      <!-- Per-plugin flag, different from env var VRX_EXIT_ON_COMPLETION -->
+      <!-- Keep Gazebo running after this sub-task is completed -->
       <per_plugin_exit_on_completion>false</per_plugin_exit_on_completion>
       <!-- Goal as Cartesian coordinates -->
       <goal_pose_cart>${pinger_x} ${pinger_y} ${pinger_z}</goal_pose_cart>
