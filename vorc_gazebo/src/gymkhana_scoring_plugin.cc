@@ -16,6 +16,7 @@
 */
 
 #include "vorc_gazebo/gymkhana_scoring_plugin.hh"
+#include <limits>
 
 /////////////////////////////////////////////////
 GymkhanaScoringPlugin::GymkhanaScoringPlugin()
@@ -62,6 +63,10 @@ void GymkhanaScoringPlugin::Update()
   if (this->channelCrossed)
   {
     this->ScoringPlugin::SetScore(this->blackboxScore);
+  }
+  else
+  {
+    this->ScoringPlugin::SetScore(std::numeric_limits<double>::max());
   }
 }
 
