@@ -17,6 +17,8 @@
   <arg name="paused" default="false"/>
   <!-- Joystick control? -->
   <arg name="joy" default="false"/>
+  <!-- Acoustic pinger position(s) -->
+  <arg name="pinger_params" default="$(find vorc_gazebo)/config/pinger.yaml"/>
 
   <!-- Initial USV location and attitude-->
   <arg name="x" default="10" />
@@ -58,7 +60,7 @@
 
   <!-- Set the pinger location -->
   <node name="set_pinger_position" pkg="vorc_gazebo" type="set_pinger_position.py" output="screen">
-    <rosparam command="load" file="$(find vorc_gazebo)/config/pinger.yaml" />
+    <rosparam command="load" file="$(arg pinger_params)" />
   </node>
   <node name="pinger_visualization" pkg="vorc_gazebo" type="pinger_visualization.py" />
 </launch>
