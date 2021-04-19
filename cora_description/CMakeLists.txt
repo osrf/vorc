@@ -18,7 +18,7 @@ catkin_package(
 
 xacro_add_files(
   urdf/cora.urdf.xacro
-    INORDER INSTALL DESTINATION urdf
+    INSTALL DESTINATION urdf
 )
 
 install(DIRECTORY models/
