@@ -45,7 +45,7 @@ xacro_add_files(
   worlds/station_keeping.world.xacro
   worlds/wayfinding.world.xacro
   worlds/gymkhana.world.xacro
-  INORDER INSTALL DESTINATION worlds
+  INSTALL DESTINATION worlds
 )
 
 install(DIRECTORY worlds/
