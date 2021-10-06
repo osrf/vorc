@@ -43,7 +43,7 @@
   <joint name="left_chasis_engine_joint" type="revolute">
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="-6.103 0.911 0.016"/>
-    <parent link="base_link"/>
+    <parent link="cora/base_link"/>
     <child link="left_engine_link"/>
     <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
   </joint>
@@ -99,7 +99,7 @@
   <joint name="right_chasis_engine_joint" type="revolute">
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="-6.103 -0.911 0.016"/>
-    <parent link="base_link"/>
+    <parent link="cora/base_link"/>
     <child link="right_engine_link"/>
     <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
   </joint>
