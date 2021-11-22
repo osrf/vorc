@@ -2,16 +2,11 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author/>
+      <author></author>
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments/>
     </contributor>
     <created>2020-10-12T19:40:54Z</created>
-    <keywords/>
     <modified>2020-10-12T19:40:54Z</modified>
-    <revision/>
-    <subject/>
-    <title/>
     <unit meter="0.10000" name="decimeter"/>
     <up_axis>Z_UP</up_axis>
   </asset>
