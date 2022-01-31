@@ -9,6 +9,11 @@ if(POLICY CMP0054)
   cmake_policy(SET CMP0054 OLD)
 endif()
 
+if(POLICY CMP0002)
+    cmake_policy(SET CMP0002 OLD)
+    set(ALLOW_DUPLICATE_CUSTOM_TARGETS)
+endif()
+
 find_package(catkin REQUIRED COMPONENTS
   gazebo_dev
   vrx_gazebo
