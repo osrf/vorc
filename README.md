@@ -1,3 +1,7 @@
+# New Development in VRX Project
+
+The functionality in this repository has been moved to the [VRX Project](https://github.com/osrf/vrx) - see [PR#470](https://github.com/osrf/vrx/pull/470).  Any modifications to the project should be done in the VRX repository.
+
 # Virtual Ocean Robotics Challenge (VORC)
 
 This repository is the home to the source code and software documentation for
